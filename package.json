@@ -1,0 +1,21 @@
+{
+  "name": "Blurt",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "engines": {
+    "node": "0.12.2"
+  },
+  "keywords": [
+    "node",
+    "heroku"
+  ],
+  "dependencies": {
+    "express": "^4.13.4",
+    "nedb": "^1.8.0",
+    "socket.io": "^1.7.3"
+  }
+}

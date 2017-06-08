@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>Blurt</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="./Frontend/Lib/framework7.ios.min.css">
+    <link rel="stylesheet" href="./Frontend/Lib/framework7.ios.colors.css">
+    <link rel="stylesheet" href="./Frontend/style.css">
+
+  </head>
+  <body>
+
+
+    <div class="page-content">
+
+
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+        <!-- Main Slide -->
+        <div class="swiper-slide">
+            <div class="title"><b>Blurt</b></div>
+
+            <div class="inputs">
+
+            <p class="dis">Let's</p>
+              <div class="what box"><input class="verb-input" type="text" placeholder="What are you doing (eg. Eat)"></div>
+              <p class="dis" >With</p>
+              <div class="who box" onclick="myApp.popup('.popup-with');"><span></span></div>
+              <p class="dis">At </p>
+              <div class="time box"><span></span></div>
+
+              <div class="submit">
+                <p>Invite</p>
+              </div>
+
+            </div>
+
+            <div class="profile">
+              <div class="profile-box">
+
+                <div class="name">
+                  <p>Henry Confos</p>
+                  <span class="logout">Tap to logout</span>
+                </div>
+
+                <div class="p-img">
+                  <img src="./pp.jpg" alt="">
+                </div>
+
+              </div>
+            </div>
+        </div>
+          <div class="at-popup">
+            <p class="at-dis">Address</p>
+              <input class="at-input at-address" placeholder="Num Street Rd Suburb"type="text" name="" value="">
+            <p class="at-dis">Nickname</p>
+              <input class="at-input at-nick" placeholder="My House"type="text" name="" value="">
+          <p class="at-dis">Time</p>
+          <input type="time" class="at-input at-time">
+              <div class="at-submit">Submit</div>
+          </div>
+        <div class="swiper-slide">
+          <!-- Message Slide -->
+            <h1 class="message-head">Messages</h1>
+
+            <div class="message-ul">
+              <li>
+                <div class="message-info">
+                  <p>Lunch at Henry's</p>
+                  <span class="time-message">12:00</span>
+                </div>
+              </li>
+            </div>
+        </div>
+
+
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+    <div class="popup popup-with">
+
+      <ul>
+        <div class="bf">
+          <p class="bf-dis">Best Friends <span style="float: right;" class="close-popup">Close</span></p>
+          <li  class="name-li" ><span _id="0cqkQQD37cZatNBt" >Polly</span><div class="name-check"></div><hr> </li>
+          <li class="name-li" ><span _id="rlFWULrHhUL7rLo3" >Henry</span> <div class="name-check"></div><hr> </li>
+          <li class="name-li" ><span _id="ncAx1IMP3DkypTz2" >Kate</span> <div class="name-check"></div><hr> </li>
+          <p class="bf-dis">Others...</p>
+          <li  class="name-li" ><span _id="0cqkQQD37cZatNBt" >Polly</span><div class="name-check"></div><hr> </li>
+          <li class="name-li" ><span _id="rlFWULrHhUL7rLo3" >Henry</span> <div class="name-check"></div><hr> </li>
+          <li class="name-li" ><span _id="ncAx1IMP3DkypTz2" >Kate</span> <div class="name-check"></div><hr> </li>
+        </div>
+      </ul>
+      <div class="before">
+
+      </div>
+    </div>
+  </div>
+
+    <script type="text/javascript" src="./Frontend/Lib/jquery.min.js"></script>
+    <script type="text/javascript" src="./Frontend/Lib/framework7.min.js"></script>
+    <script type="text/javascript" src="./Frontend/Lib/socket.io.js"></script>
+    <script src="./Frontend/logic.js" charset="utf-8"></script>
+  </body>
+</html>
