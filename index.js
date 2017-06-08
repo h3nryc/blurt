@@ -15,7 +15,7 @@ io.on('connection', function(socket){
 
   //Add Events and send out invites
   socket.on('newEvent', function(data,type){
-    for (var i = 0; i < data.friendId.length; i++) {
+    //for (var i = 0; i < data.friendId.length; i++) {
 
       if (type = 0) {
         var eventDoc = {
@@ -56,6 +56,21 @@ io.on('connection', function(socket){
 
       }
 
-    }
+    //}
+  });
+  socket.on('getEvents', function(data){
+    var count = 0;
+    var datac = {};
+    userDB.find({_id: data.userID }, function (err, docs) {
+      for (var i = 0; i < docs[0].events.length; i++) {
+        eventDB.find({_id: docs[0].events[i] }, function (err, docs2) {
+          datac[count] = docs2[0];
+          count += 1;
+          if (count == docs[0].events.length) {
+            socket.emit('getEventsResp', datac);
+          }
+        });
+      }
+    });
   });
 });

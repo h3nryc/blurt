@@ -113,6 +113,30 @@ socket.on('eventSuc', function (venue) {
 	eventAddSuc();
 })
 
+
+function getEvents() {
+  var serverData = {
+    userID: "rlFWULrHhUL7rLo3"
+  };
+  socket.emit('getEvents', serverData);
+}
+
+socket.on('getEventsResp', function (events) {
+  getEventsRespHandler(events);
+})
+
+function getEventsRespHandler(events){
+  console.log(events);
+  $(".message-ul").empty();
+  for (var key in events) {
+    if (events.hasOwnProperty(key)) {
+      $(".message-ul").append('<li><div class="message-info"><p>'+events[key].locIn[0]+'</p><span class="time-message">'+events[key].time+'</span></div></li>');
+    }
+  }
+}
+
+setTimeout(function(){ getEvents(); }, 2000);
+
 function eventAddSuc() {
   $('.at-popup').after('<div class="suc"><h1>Event Created!</h1><div onclick="$(\'.suc\').fadeOut();" class="suc-submit">Cool</div></div>')
   $('.suc').fadeIn();

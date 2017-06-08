@@ -1,6 +1,2 @@
-{"inEvent":["rlFWULrHhUL7rLo3"],"unix":1495447536894,"time":"02:02","verb":"Eating","locIn":["Mine",null],"_id":"68Vgcj58vZqYIO7Y"}
-{"inEvent":["ncAx1IMP3DkypTz2"],"unix":1495449377041,"time":"02:34","verb":"Lunch","locIn":["Mine",null],"_id":"Czt8T8Ve25cDkfcG"}
-{"inEvent":["0cqkQQD37cZatNBt"],"unix":1495447502976,"time":"02:02","verb":"Eating","locIn":["Mine",null],"_id":"Md2kXMbfGQkP9aVW"}
-{"inEvent":["ncAx1IMP3DkypTz2"],"unix":1495449225645,"time":"02:34","verb":"Eating","locIn":["Whoop",null],"_id":"dKWV8Bc4IeRzCeXK"}
-{"inEvent":["ncAx1IMP3DkypTz2","rlFWULrHhUL7rLo3"],"unix":1496118325353,"time":"14:31","verb":"Eat","locIn":["My house",null],"_id":"SjIkPGTSG9nCLbe5"}
-{"inEvent":["ncAx1IMP3DkypTz2","rlFWULrHhUL7rLo3"],"unix":1496118325353,"time":"14:31","verb":"Eat","locIn":["My house",null],"_id":"G60V85USH6AkEKth"}
+{"inEvent":["0cqkQQD37cZatNBt","rlFWULrHhUL7rLo3","ncAx1IMP3DkypTz2"],"unix":1496926002475,"time":"12:31","verb":"test2","locIn":["test2","test2"],"_id":"Awtmf7d5JXN4dkJ5"}
+{"inEvent":["ncAx1IMP3DkypTz2","rlFWULrHhUL7rLo3","0cqkQQD37cZatNBt"],"unix":1496922920404,"time":"02:13","verb":"asd","locIn":["test","sadas"],"_id":"FUgmqw7QUStNTBet"}
