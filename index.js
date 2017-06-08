@@ -1,5 +1,6 @@
 var express = require('express');
 var app = express();
+var path = require('path');
 var server = app.listen(3000);
 var io = require('socket.io').listen(server);
 
@@ -7,13 +8,7 @@ var Datastore = require('nedb')
 , userDB = new Datastore({ filename: './db/users.json', autoload: true });
 eventDB = new Datastore({ filename: './db/event.json', autoload: true });
 
-app.use(express.static('frontend'));
-
-app.get('/', function (req, res) {
-  res.sendFile(__dirname + '/index.html');
-});
-
-
+app.use('/', express.static(path.join(__dirname, 'Frontend')))
 
 //Connection from server
 io.on('connection', function(socket){
