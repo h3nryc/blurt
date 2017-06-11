@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
+  </head>
+  <style media="screen">
+    body{
+      font-family: 'Open Sans', sans-serif;
+      background-color: #81CFE0;
+    }
+  .out{
+  text-align: center;
+  margin-top: 43%;
+  }
+  h1{
+    color: #547980;
+  }
+  input{
+    border: none;
+    width: 90%;
+    border-radius: 5px;
+    height: 45px;
+    font-size: 12pt;
+    margin-left: 10px;
+    background-color: #c0e7ef;
+    color: #34495e;
+    margin-bottom: 12px;
+    padding-left: 10px;
+  }
+  input:placeholder-shown {
+    color: #34495e;
+  }
+  textarea:focus, input:focus{
+    outline: none;
+}
+.submit{
+  width: 60%;
+  height: 40px;
+  background-color: #c0e7ef;
+  margin: 0 auto;
+  border-radius: 5px;
+  line-height: 40px;
+  font-size: 14pt;
+  text-align: center;
+  color: #34495e;
+  font-family: 'Open Sans', sans-serif;
+}
+.submit:hover{
+  background-color: #d2eef3;
+}
+  </style>
+
+  <body>
+<div class="out">
+  <h1>Login</h1>
+  <div class="inputs">
+    <input type="text" placeholder="Username" id="user">
+    <input type="password" placeholder="Password" id="pass">
+    <div class="submit">
+    Submit
+    </div>
+  </div>
+</div>
+<script type="text/javascript" src="./Lib/jquery.min.js"></script>
+<script type="text/javascript" src="./Lib/socket.io.js"></script>
+<script type="text/javascript">
+  var socket = io('http://localhost:3000');
+  $( ".submit" ).click(function() {
+    var user = $('#user').val();
+    var pass = $('#pass').val();
+    socket.emit('Login', user,pass)
+  })
+
+  socket.on('LogSuc', function () {
+    window.location = "https://imgur.com"
+  })
+  socket.on('LogFail', function () {
+    alert("Please check your username of password.")
+  })
+</script>
+  </body>
+</html>

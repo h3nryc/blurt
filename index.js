@@ -73,4 +73,19 @@ io.on('connection', function(socket){
       }
     });
   });
+  socket.on('Login', function(user,pass){
+    userDB.findOne({name: user }, function (err, docs) {
+      if (docs == null) {
+        socket.emit('LogFail')
+      }else{
+        userDB.findOne({hashPass: pass }, function (err, docs) {
+          if (docs == null) {
+            socket.emit('LogFail')
+          }else {
+            socket.emit('LogSuc')
+          }
+        })
+      }
+    });
+  });
 });
