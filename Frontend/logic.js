@@ -7,6 +7,7 @@ var address = "";
 var addressNick = "";
 var time = "";
 var socket = io('http://localhost:3000');
+getEvents();
 
 //Define Swiper element
 var mainSwiper = myApp.swiper('.swiper-container', {
@@ -130,12 +131,15 @@ function getEventsRespHandler(events){
   $(".message-ul").empty();
   for (var key in events) {
     if (events.hasOwnProperty(key)) {
-      $(".message-ul").append('<li><div class="message-info"><p>'+events[key].locIn[0]+'</p><span class="time-message">'+events[key].time+'</span></div></li>');
+      idToName(events[key].inEvent)
+      $(".message-ul").append('<li onclick="myApp.popup(\'.popup-message\');"><div class="message-info"><p>'+events[key].verb+'</p><span class="time-message">With </span></div></li>');
     }
   }
 }
 
-setTimeout(function(){ getEvents(); }, 2000);
+window.setInterval(function(){
+  getEvents();
+}, 1000);
 
 function eventAddSuc() {
   $('.at-popup').after('<div class="suc"><h1>Event Created!</h1><div onclick="$(\'.suc\').fadeOut();" class="suc-submit">Cool</div></div>')
@@ -150,4 +154,8 @@ function eventAddSuc() {
   $('.verb-input').val('')
   $('.who').children('span').text('')
   $('.time').children('span').text('');
+}
+
+function idToName(array) {
+socket.emit('idToName', array[0]);
 }
