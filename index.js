@@ -4,10 +4,10 @@ var path = require('path');
 var server = app.listen(3000);
 var io = require('socket.io').listen(server);
 
-var Datastore = require('nedb')
-, userDB = new Datastore({ filename: './db/users.json', autoload: true });
-eventDB = new Datastore({ filename: './db/event.json', autoload: true });
-
+var Datastore = require('nedb');
+var userDB = new Datastore({ filename: './db/users.json', autoload: true });
+var eventDB = new Datastore({ filename: './db/event.json', autoload: true });
+var messagesDB = new Datastore({ filename: './db/messages.json', autoload: true });
 app.use('/', express.static(path.join(__dirname, 'Frontend')))
 
 //Connection from server
@@ -35,8 +35,10 @@ io.on('connection', function(socket){
             userDB.update({ _id: data.friendId[i] }, { $push: { events: newDoc._id } }, {}, function () {
             });
           }
+          messagesDB.insert({ eventID: newDoc._id }, function (err, newDoc) {
+          });
         });
-      }else {
+      } else {
         var eventDoc = {
           inEvent: data.friendId,
           unix: new Date().getTime(),
@@ -53,11 +55,11 @@ io.on('connection', function(socket){
             });
           }
         });
-
       }
 
     //}
   });
+
   socket.on('getEvents', function(data){
     var count = 0;
     var datac = {};
@@ -71,6 +73,16 @@ io.on('connection', function(socket){
           }
         });
       }
+    });
+  });
+  socket.on('getMessages', function(data){
+    messagesDB.find({eventID: data.eventID }, function (err, docs) {
+      socket.emit('getMessagesResp', {eventID:data.eventID, messages: docs[0].messages});
+    });
+  });
+  socket.on('sendMessage', function(data){
+    messagesDB.update({ eventID: data.eventID }, { $push: { messages:{userID:data.userID, name:data.name, message: data.message} } }, {}, function () {
+      socket.emit('sendMessageSuc');
     });
   });
   socket.on('Login', function(user,pass){

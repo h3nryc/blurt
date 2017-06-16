@@ -5,6 +5,8 @@ var idList = [];
 var nameList = [];
 var address = "";
 var addressNick = "";
+var name = "Henry"
+var userid = "rlFWULrHhUL7rLo3";
 var time = "";
 var socket = io('http://localhost:3000');
 getEvents();
@@ -117,7 +119,7 @@ socket.on('eventSuc', function (venue) {
 
 function getEvents() {
   var serverData = {
-    userID: "rlFWULrHhUL7rLo3"
+    userID: userid
   };
   socket.emit('getEvents', serverData);
 }
@@ -126,8 +128,37 @@ socket.on('getEventsResp', function (events) {
   getEventsRespHandler(events);
 })
 
+function getMessages(eventid) {
+  var serverData = {
+    eventID: eventid
+  };
+  socket.emit('getMessages', serverData);
+}
+
+socket.on('getMessagesResp', function (data) {
+  $("#"+data.eventID).empty();
+  for (var i = 0; i < data.messages.length; i++) {
+    if (data.messages[i].name == name) {
+      $("#"+data.eventID).append('<li class="you">'+data.messages[i].message+'</li><br>');
+    } else {
+      $("#"+data.eventID).append('<li class="other">'+data.messages[i].message+'</li><br>');
+    }
+  }
+})
+
+function sendMessage(eventid, message) {
+  var serverData = {
+    eventID: eventid,
+    message: message,
+    name: name,
+    userID: userid
+  };
+  socket.emit('sendMessage', serverData);
+}
+
+
+
 function getEventsRespHandler(events){
-  console.log(events);
   $(".message-ul").empty();
   for (var key in events) {
     if (events.hasOwnProperty(key)) {
@@ -139,6 +170,7 @@ function getEventsRespHandler(events){
 
 window.setInterval(function(){
   getEvents();
+  getMessages("8z2bRiftkxMFkP0g");
 }, 1000);
 
 function eventAddSuc() {
